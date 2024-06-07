@@ -29,8 +29,8 @@
                     $stmt = $pdo->query('SELECT * FROM Film');
                     while ($film = $stmt->fetch()) {
                         echo '<div class="movie">';
-                        echo '<img src="' . $film['Affiche'] . '" alt="' . $film['Titre'] . '">';
                         echo '<h3>' . $film['Titre'] . '</h3>';
+                        echo '<p>' . $film['Description'] . '</p>';
                         echo '</div>';
                     }
                     ?>
