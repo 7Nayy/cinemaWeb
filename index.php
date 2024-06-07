@@ -26,7 +26,7 @@
                 <div class="movies">
                     <?php
                     include 'config.php';
-                    $stmt = $pdo->query('SELECT * FROM Films');
+                    $stmt = $pdo->query('SELECT * FROM Film');
                     while ($film = $stmt->fetch()) {
                         echo '<div class="movie">';
                         echo '<img src="' . $film['Affiche'] . '" alt="' . $film['Titre'] . '">';

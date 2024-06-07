@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
                 <label for="film">Choisissez un film :</label>
                 <select name="film" id="film">
                     <?php
-                    $stmt = $pdo->query('SELECT * FROM Films');
+                    $stmt = $pdo->query('SELECT * FROM Film');
                     while ($film = $stmt->fetch()) {
                         echo '<option value="' . $film['Id'] . '">' . $film['Titre'] . '</option>';
                     }
@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
                 <label for="time">Heure :</label>
                 <select name="time" id="time">
                     <?php
-                    $stmt = $pdo->query('SELECT * FROM Seances');
+                    $stmt = $pdo->query('SELECT * FROM Seance');
                     while ($seance = $stmt->fetch()) {
                         echo '<option value="' . $seance['Heure'] . '">' . $seance['Heure'] . '</option>';
                     }
