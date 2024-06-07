@@ -60,6 +60,7 @@ main {
 
 .movies {
     display: flex;
+    flex-wrap: wrap;
     gap: 1em;
 }
 
@@ -70,15 +71,16 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s;
-}
-
-.movie img {
-    width: 100%;
-    height: auto;
+    flex: 1 1 30%;
 }
 
 .movie h3 {
     margin: 0.5em 0 0;
+}
+
+.movie p {
+    margin: 0.5em 0 0;
+    text-align: left;
 }
 
 .movie:hover {
