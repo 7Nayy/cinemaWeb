@@ -1,14 +1,15 @@
 <?php
-$servername = "212.132.116.22"; // L'adresse du serveur de base de données
-$username = "root"; // Le nom d'utilisateur pour accéder à votre base de données
-$password = "admin719"; // Le mot de passe pour accéder à votre base de données
-$dbname = "cinema"; // Le nom de votre base de données
+// config.php
+$host = '212.132.116.22';
+$dbname = 'cinema';
+$username = 'root';
+$password = 'admin719';
 
-// Créer une connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Échec de la connexion : " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die('Connection failed: ' . $e->getMessage());
 }
 ?>
+
