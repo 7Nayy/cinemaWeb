@@ -1,0 +1,127 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 1em 0;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover {
+    background-color: #444;
+}
+
+main {
+    padding: 2em 0;
+}
+
+.featured-movies {
+    margin-bottom: 2em;
+}
+
+.featured-movies h2, .reservation h2 {
+    border-bottom: 2px solid #222;
+    padding-bottom: 0.5em;
+}
+
+.movies {
+    display: flex;
+    gap: 1em;
+}
+
+.movie {
+    background-color: #fff;
+    padding: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.movie img {
+    width: 100%;
+    height: auto;
+}
+
+.movie h3 {
+    margin: 0.5em 0 0;
+}
+
+.movie:hover {
+    transform: scale(1.05);
+}
+
+.reservation form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #fff;
+    padding: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.reservation label {
+    font-weight: bold;
+}
+
+.reservation input, .reservation select, .reservation button {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+.reservation button {
+    background-color: #222;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reservation button:hover {
+    background-color: #444;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

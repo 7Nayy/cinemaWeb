@@ -1,33 +1,18 @@
 <?php
-session_start();
 include 'config.php';
+session_start();
 
-$email = $_POST['email'];
-$motDePasse = $_POST['motDePasse'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT Id, MotDePasse FROM Utilisateur WHERE Email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare('SELECT * FROM Utilisateurs WHERE username = :username');
+$stmt->execute(['username' => $username]);
+$user = $stmt->fetch();
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    if (password_verify($motDePasse, $row['MotDePasse'])) {
-        $_SESSION['userId'] = $row['Id'];
-        echo "Connexion réussie.";
-        // Redirection vers une page après connexion réussie
-        // header('Location: pageApresConnexion.php');
-    } else {
-        echo "Mot de passe incorrect.";
-    }
+if ($user && password_verify($password, $user['password'])) {
+    $_SESSION['user_id'] = $user['id'];
+    header('Location: espacePersonnel.php');
 } else {
-    echo "Aucun utilisateur trouvé avec cet email.";
+    echo 'Nom d\'utilisateur ou mot de passe incorrect';
 }
-
-$_SESSION['userId'] = $row['Id']; // L'ID de l'utilisateur depuis la base de données
-$_SESSION['userNom'] = $row['Nom']; // Le nom de l'utilisateur pour un usage ultérieur
-
-// Redirigez l'utilisateur vers son espace personnel
-header('Location: espacePersonnel.php');
-exit();
 ?>

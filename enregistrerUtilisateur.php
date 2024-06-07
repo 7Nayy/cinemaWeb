@@ -1,19 +1,11 @@
 <?php
-include 'config.php'; // Votre script de connexion à la base de données
+include 'config.php';
 
-$nom = $_POST['nom'];
-$email = $_POST['email'];
-$motDePasse = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT); // Hashage du mot de passe
+$username = $_POST['username'];
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-$stmt = $conn->prepare("INSERT INTO Utilisateur (Nom, Email, MotDePasse) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $nom, $email, $motDePasse);
+$stmt = $pdo->prepare('INSERT INTO Utilisateurs (username, password) VALUES (:username, :password)');
+$stmt->execute(['username' => $username, 'password' => $password]);
 
-if ($stmt->execute()) {
-    echo "Inscription réussie. <a href='connexion.php'>Connectez-vous ici</a>.";
-} else {
-    echo "Erreur lors de l'inscription: " . $conn->error;
-}
-
-$stmt->close();
-$conn->close();
+header('Location: connexion.php');
 ?>

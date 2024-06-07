@@ -1,45 +1,64 @@
 <?php
+include 'config.php';
 session_start();
 
-// Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['userId'])) {
-    // Si non connecté, redirection vers la page de connexion
+if (!isset($_SESSION['user_id'])) {
     header('Location: connexion.php');
     exit();
 }
-
-include 'config.php'; // Connexion à la base de données pour récupérer les infos des films, etc.
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Personnel</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Bienvenue, <?php echo htmlspecialchars($_SESSION['userNom']); ?></h1>
-<h2>Réservez vos places de cinéma</h2>
-
-<!-- Ici, vous pourriez lister les films disponibles pour la réservation -->
-<?php
-$sql = "SELECT Id, Titre, Description FROM Film";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<p>";
-        echo "<strong>" . htmlspecialchars($row["Titre"]) . "</strong><br>";
-        echo htmlspecialchars($row["Description"]) . "<br>";
-        // Lien pour réserver une place pour ce film
-        echo "<a href='reserver.php?filmId=" . $row["Id"] . "'>Réserver</a>";
-        echo "</p>";
-    }
-} else {
-    echo "Aucun film trouvé.";
-}
-?>
-
-<a href="deconnexion.php">Déconnexion</a>
+    <header>
+        <div class="container">
+            <h1><a href="index.php">Cinéma</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="deconnexion.php">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Réservez vos billets</h2>
+            <form action="reserver.php" method="post">
+                <label for="film">Choisissez un film :</label>
+                <select name="film" id="film">
+                    <?php
+                    $stmt = $pdo->query('SELECT * FROM Films');
+                    while ($film = $stmt->fetch()) {
+                        echo '<option value="' . $film['Id'] . '">' . $film['Titre'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <label for="date">Date :</label>
+                <input type="date" name="date" id="date">
+                <label for="time">Heure :</label>
+                <select name="time" id="time">
+                    <?php
+                    $stmt = $pdo->query('SELECT * FROM Seances');
+                    while ($seance = $stmt->fetch()) {
+                        echo '<option value="' . $seance['Heure'] . '">' . $seance['Heure'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <button type="submit">Réserver</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cinéma. Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 </html>

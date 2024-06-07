@@ -13,8 +13,6 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="films.php">Films</a></li>
-                    <li><a href="seances.php">Séances</a></li>
                     <li><a href="inscription.php">Inscription</a></li>
                     <li><a href="connexion.php">Connexion</a></li>
                 </ul>
@@ -37,32 +35,6 @@
                     }
                     ?>
                 </div>
-            </section>
-            <section class="reservation">
-                <h2>Réservez vos billets</h2>
-                <form action="reserver.php" method="post">
-                    <label for="film">Choisissez un film :</label>
-                    <select name="film" id="film">
-                        <?php
-                        $stmt = $pdo->query('SELECT * FROM Films');
-                        while ($film = $stmt->fetch()) {
-                            echo '<option value="' . $film['Id'] . '">' . $film['Titre'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <label for="date">Date :</label>
-                    <input type="date" name="date" id="date">
-                    <label for="time">Heure :</label>
-                    <select name="time" id="time">
-                        <?php
-                        $stmt = $pdo->query('SELECT * FROM Seances');
-                        while ($seance = $stmt->fetch()) {
-                            echo '<option value="' . $seance['Heure'] . '">' . $seance['Heure'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <button type="submit">Réserver</button>
-                </form>
             </section>
         </div>
     </main>
