@@ -1,5 +1,5 @@
 <?php
-$servername = "212.132.116.22"; // L'adresse du serveur de base de données, généralement "localhost" pour une base de données locale
+$servername = "212.132.116.22"; // L'adresse du serveur de base de données
 $username = "root"; // Le nom d'utilisateur pour accéder à votre base de données
 $password = "admin719"; // Le mot de passe pour accéder à votre base de données
 $dbname = "cinema"; // Le nom de votre base de données
