@@ -11,6 +11,7 @@ $user = $stmt->fetch();
 
 if ($user && password_verify($password, $user['MotDePasse'])) {
     $_SESSION['user_id'] = $user['Id'];
+    $_SESSION['username'] = $user['Nom'];
     header('Location: espacePersonnel.php');
 } else {
     echo 'Nom d\'utilisateur ou mot de passe incorrect';
