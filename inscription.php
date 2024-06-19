@@ -22,11 +22,26 @@
     <main>
         <div class="container">
             <h2>Inscription</h2>
+            <?php
+            session_start();
+            if (isset($_SESSION['error'])) {
+                echo "<span style='color:red;'>".$_SESSION['error']."</span>";
+                unset($_SESSION['error']);
+            }
+            ?>
             <form action="enregistrerUtilisateur.php" method="post">
-                <label for="username">Nom d'utilisateur :</label>
+                <label for="username">Nom :</label>
                 <input type="text" id="username" name="username" required>
+                
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="date_naissance">Date de Naissance :</label>
+                <input type="date" id="date_naissance" name="date_naissance" required>
+                
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" required>
+                
                 <button type="submit">S'inscrire</button>
             </form>
         </div>
